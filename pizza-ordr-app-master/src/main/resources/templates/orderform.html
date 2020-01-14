@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <!---Google Fonts--->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+<nav th:replace="base :: navbar"></nav>
+<div class="container">
+
+</div>
+<div class="form-bg">
+    <div class="container container-wrapper ">
+        <div class="row">
+            <div class="col">
+                <div class="card border-0 shadow my-5 w-75 mx-auto">
+                    <div class="card-body ">
+                        <h1 class="header-text">Build Your Own Pizza </h1>
+                        <form th:action="@{/process}" th:object="${pizza}" method="POST" enctype="multipart/form-data">                            <!-- Material input -->
+                            <label class="text-primary">Size</label>
+                            <select name="size" class="browser-default custom-select">
+                                <option value="" disabled="" selected="">Choose your option</option>
+                                <option value="small">Small</option>
+                                <option value="medium">Medium</option>
+                                <option value="large">Large</option>
+                            </select>
+                            <label class="text-primary">Crust Type</label>
+                            <select name="crust" class="browser-default custom-select">
+                                <option value="" disabled="" selected="">Choose your option</option>
+                                <option value="original-crust">Original</option>
+                                <option value="thin-crust">Thin</option>
+                                <option value="gluten-free-crust">Gluten Free</option>
+                            </select>
+
+
+                            <!-- Material input -->
+                            <label class="text-primary">Sauce</label>
+                            <select name="sauce" class="browser-default custom-select mb-4" id="select">
+                                <option value="" disabled="" selected="">Choose your option</option>
+                                <option value="sauce">Original</option>
+                                <option value="sauce">BBQ</option>
+                                <option value="sauce">Alfredo Sauce</option>
+                                <option value="sauce">Ranch</option>
+                                <option value="sauce">Buffalo</option>
+                            </select>
+                            <label class="text-primary">Baked</label>
+                            <select name="bake" class="browser-default custom-select mb-4">
+                                <option value="" disabled="" selected="">Choose your option</option>
+                                <option value="bake">Normal</option>
+                                <option value="bake">Well Done</option>
+                                <!--                        <label class="checkbox btn btn-info "><i class="icon-plus icon-white"></i><input  type="checkbox" name="bake" value="Normal">Normal</label>-->
+                                <!--                        <label class="checkbox btn btn-info "><i class="icon-plus icon-white"></i><input  type="checkbox" name="bake" value="Well Done">Well Done</label>-->
+                            </select>
+                            <label class="text-primary">Cheeses</label>
+                            <select name="cheese" class="browser-default custom-select mb-4" >
+                                <option value="" disabled="" selected="">Choose your option</option>
+                                <option value="cheese">Normal</option>
+                                <option value="cheese">Light</option>
+                                <option value="cheese">None</option>
+                            </select>
+                            <br/>
+
+                            <label class="text-primary">Select Meats: </label>
+                            <div class="container">
+                                <div class="form-check form-check-inline">
+                                    <input type="checkbox" id="pepperoni-chosen" name="meat"
+                                           onclick="pepperoniToggle()" value="Pepperoni">
+                                    <label for="pepperoni-chosen" >Pepperoni</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="checkbox" id="grilled-chicken" name="meat">
+                                    <label for="grilled-chicken" value="Chicken">Grilled-chicken</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="checkbox" id="sausage" name="meat" value="Sausage">
+                                    <label for="sausage" >sausage</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="checkbox" id="bacon" name="meat" value="Sausage">
+                                    <label for="bacon">bacon</label>
+                                </div>
+                            </div>
+
+                            <label class="text-primary">Select Veggies: </label>
+                            <div class="container">
+                                <div class="form-check form-check-inline">
+                                    <input type="checkbox" id="mushroom" name="veggie" onclick="mushroomToggle()" value="Mushroom">
+                                    <label for="mushroom">Mushroom</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="checkbox" id="green-pepper-chosen" name="veggie"
+                                           onclick="greenPepperToggle()" value="Green Pepper">
+                                    <label for="green-pepper-chosen">Green Pepper </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="checkbox" id="tomatoes" name="veggie" value="Tomatoes">
+                                    <label for="tomatoes">tomatoes</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="checkbox" id="onions" name="veggie" value="Onions">
+                                    <label for="onions">onions</label>
+                                </div>
+                            </div>
+
+                            <button class="btn-primary btn-sm " type="submit">Order</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <br><br><br><br>
+                <div class="pizza-container">
+                    <div class="crust">
+                        <div class="sauce">
+                            <div class="cheese">
+                                <div class="pepperoni">
+                                    <img id="pepperoni-pic" class="pepperoni-pic" src="/pepperoni.svg"
+                                         style="visibility:hidden">
+                                </div>
+                                <div class="mushrooms">
+                                    <img id="shroom1"
+                                         src="http://www.clker.com/cliparts/u/t/6/d/P/w/totetude-mushroom-pizza-topping-th.png"
+                                         class="shroom1" style="visibility:hidden">
+                                    <img id="shroom2"
+                                         src="http://www.clker.com/cliparts/u/t/6/d/P/w/totetude-mushroom-pizza-topping-th.png"
+                                         class="shroom2" style="visibility:hidden">
+                                </div>
+                                <div class="greenpeppers">
+                                    <img id="green-pepper"
+                                         src="http://nycrust.com/wp-content/uploads/2019/01/green-peppers.png"
+                                         class="greenpepper" style="visibility: hidden">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="base :: javascript-links"></div>
+<script type="text/javascript" th:src="@{/js/script.js}"></script>
+</body>
+</html>

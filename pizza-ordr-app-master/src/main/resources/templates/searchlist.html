@@ -1,0 +1,166 @@
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Cart Detail</title>-->
+<!--    &lt;!&ndash; Font Awesome &ndash;&gt;-->
+<!--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">-->
+<!--    &lt;!&ndash; Bootstrap core CSS &ndash;&gt;-->
+<!--    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">-->
+<!--    &lt;!&ndash; Material Design Bootstrap &ndash;&gt;-->
+<!--    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet">-->
+<!--    <link rel="stylesheet" th:href="@{/styles.css}">-->
+<!--    &lt;!&ndash;-Google Fonts-&ndash;&gt;-->
+<!--    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">-->
+<!--    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">-->
+
+<!--    <link rel="stylesheet" href="animate.min.css">-->
+<!--</head>-->
+<!--<body>-->
+<!--<nav class="mb-1 navbar navbar-expand-lg navbar-dark red darken-2" th:fragment="navbar">-->
+<!--    <a class="navbar-brand" href="#">-->
+<!--        <img src="/logo.png" height="50px" width="50px" alt="pizza logo">-->
+<!--    </a>-->
+<!--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"-->
+<!--            aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--        <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+<!--    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">-->
+<!--        <ul class="navbar-nav mr-auto">-->
+<!--            <li class="nav-item active">-->
+<!--                <a class="nav-link" href="/">Home-->
+<!--                    <span class="sr-only">(current)</span>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href="/register">Sign Up</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href="/login">Login</a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--        <ul class="navbar-nav ml-auto">-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href="#">Menu</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item" >-->
+<!--                <a class="nav-link waves-effect waves-light" href="/cart" >-->
+<!--                    <i class="fas fa-shopping-cart"> </i>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--</nav>-->
+
+
+<!--<div class="container" >-->
+<!--    <div class="col-md-8">-->
+
+<!--        <h2 th:inline="text">[[${user.firstName}]] [[${user.lastName}]]</h2>-->
+
+<!--        <div   class="card" >-->
+<!--            <div class="card-body" th:each="input:${user.inputs}">-->
+<!--                Id :  <span th:text="${input.orderId}"></span><br/>-->
+<!--                Date :  <span th:text="${input.orderDate}"></span><br/>-->
+<!--                Price:  <span th:text="${input.orderPrice}"></span><br/>-->
+<!--                  <div th:each="pizza:${input.pizzaSet}">-->
+<!--                      Pizza Name:<span th:text="${pizza.meat}"></span>-->
+<!--                  </div>-->
+<!--            </div>-->
+
+<!--        </div>-->
+
+<!--    </div>-->
+
+<!--</div>-->
+<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>-->
+<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart Detail</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <!---Google Fonts--->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="animate.min.css">
+</head>
+<body  background="http://mypipizza.com/wp-content/uploads/2014/03/mypi-pizza-website-slider1.jpg" style="  background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;">
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark red darken-2" th:fragment="navbar">
+    <a class="navbar-brand" href="#">
+        <img src="/logo.png" height="50px" width="50px" alt="pizza logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+            aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/register">Sign Up</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Menu</a>
+            </li>
+            <li class="nav-item" >
+                <a class="nav-link waves-effect waves-light" href="/cart" >
+                    <i class="fas fa-shopping-cart"> </i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<div class="container" >
+    <div class="col-md-12">
+        </br></br>
+        <h2 th:inline="text" style="color: orangered; font-weight: bolder">Customer: [[${user.firstName}]] [[${user.lastName}]]</h2>
+        </br></br>
+        <div   class="card" style="width: 50%; height: 50%; top:0; bottom: 10%; left: 0; right: 0;    margin: auto;" >
+            <div class="card-body" th:each="input:${user.inputs}" style="background-color:peachpuff; color:  blue; font-weight: bolder;">
+                Id :  <span th:text="${input.orderId}"></span><br/><br/>
+                Date :  <span th:text="${input.orderDate}"></span><br/><br/>
+                Price:  <span th:text="${input.orderPrice}"></span><br/><br/>
+                <div th:each="pizza:${input.pizzaSet}">
+                    Pizza Name:<span th:text="${pizza.meat}"></span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
+

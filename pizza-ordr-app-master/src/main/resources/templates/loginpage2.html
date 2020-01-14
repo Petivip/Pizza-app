@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/login.css}">
+</head>
+<body>
+<div class="login-bg">
+<div class="container container-login">
+    <nav class="mb-1 navbar navbar-expand-lg navbar-dark red darken-2" th:fragment="navbar">
+        <a class="navbar-brand" href="#">
+            <img src="/logo.png" height="50px" width="50px" alt="pizza logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+                aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">Sign Up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Menu</a>
+                </li>
+                <li class="nav-item" >
+                    <a class="nav-link waves-effect waves-light" href="/cart" >
+                        <i class="fas fa-shopping-cart"> </i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="card w-50 mx-auto wow fadeIn" data-wow-delay="1s">
+        <h1 class="login-title text-center">Login Page</h1>
+        <div th:if="${param.error}" class="alert alert-info" role="alert">
+            Invalid username or password
+        </div>
+        <div th:if="${param.logout}" class="alert alert-warning" role="alert">
+            You have been logged out
+        </div>
+        <div class="card card-body-login px-lg-5 pt-0">
+            <form class="text-center" style="color: #757575;" th:action="@{/checkoutprocess2}" method="post">
+                <!-- passes the login information on to Spring Security -->
+                <!-- this requires 'username' and 'password' as well as the "post" to @{/login} -->
+                <div class="md-form">
+                    <input type="text" name="username" id="materialLoginFormEmail" class="form-control"/>
+                    <label for="materialLoginFormEmail">Username</label>
+                </div>
+                <div class="md-form">
+                    <input type="password" name="password" id="materialLoginFormPassword" class="form-control"/>
+                    <label for="materialLoginFormPassword">Password</label>
+                </div>
+                <!-- Register -->
+                <p>Not a member?
+                    <a href="/register">Register</a>
+                </p>
+                <button type="submit" class="btn btn-outline-info btn-rounded waves-effect"><i class="fas fa-sign-in-alt pr-2"
+                                                                                               aria-hidden="true"></i>Sign in</button>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+<div th:replace="base :: javascript-links"></div>
+</body>
+</html>

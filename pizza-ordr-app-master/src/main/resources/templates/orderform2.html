@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <!---Google Fonts--->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="animate.min.css">
+</head>
+<body>
+<div th:replace="base ::navbar"></div>
+
+<!--<div class="container"><hr></div>-->
+<!--<main>-->
+<!--    <section class="Recommendations">-->
+<!--        <div class="main">-->
+<!--            <h1 class="recommendation-title">Recommendations</h1>-->
+<!--            <ul class="cards">-->
+<!--                <li class="cards_item">-->
+<!--                    <div class="card card-landing wow fadeInLeft">-->
+<!--                        <div class="card_image"><img class="img-response" src="https://x56q142t2ix2x00293jc48ze-wpengine.netdna-ssl.com/placentia/wp-content/uploads/sites/4/2018/08/Papa-Johns-Cheese-Pizza-589x414-2.jpg"></div>-->
+<!--                        <div class="card_content">-->
+<!--                            <h2 class="card_title">Build Your Own</h2>-->
+<!--                            <p class="card_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean iaculis mauris sit amet augue feugiat ornare. Morbi erat diam, condimentum ac nisi a, blandit cursus nunc. Quisque suscipit dui nec diam consequat, at elementum lacus congue</p>-->
+<!--                            <i class="far fa-heart"></i>-->
+<!--                            <form action="#" th:action="@{/orderform2}" th:object="${pizza}" method="POST">-->
+<!--                                <button class="btn card_btn" >Customize</button>-->
+<!--                            </form>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </li>-->
+<!--                <li class="cards_item">-->
+<!--                    <div class="card card-landing wow bounceInUp">-->
+<!--                        <div class="card_image"><img class="img-response" src="https://cdn.shopify.com/s/files/1/0808/5563/products/061219_Pepperoni_Full_800x.jpg?v=1560820716"></div>-->
+<!--                        <div class="card_content">-->
+<!--                            <h2 class="card_title">Peperoni Pizza </h2>-->
+<!--                            <p class="card_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean iaculis mauris sit amet augue feugiat ornare. Morbi erat diam, condimentum ac nisi a, blandit cursus nunc. Quisque suscipit dui nec diam consequat, at elementum lacus congue</p>-->
+<!--                            <i class="far fa-heart"></i>-->
+<!--                            <form action="#" th:action="@{/pizzadetail2}" th:object="${pizza}" method="POST">-->
+
+<!--                                <button class="btn card_btn" name="pizzaName" th:value="Peporoni">Detail</button>-->
+<!--                            </form>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </li>-->
+<!--                <li class="cards_item wow fadeInRight">-->
+<!--                    <div class="card card-landing">-->
+<!--                        <div class="card_image"><img class="img-response" src="https://x56q142t2ix2x00293jc48ze-wpengine.netdna-ssl.com/placentia/wp-content/uploads/sites/4/2018/08/Papa-Johns-Cheese-Pizza-589x414-2.jpg"></div>-->
+<!--                        <div class="card_content">-->
+<!--                            <h2 class="card_title">Cheese Pizza </h2>-->
+<!--                            <p class="card_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean iaculis mauris sit amet augue feugiat ornare. Morbi erat diam, condimentum ac nisi a, blandit cursus nunc. Quisque suscipit dui nec diam consequat, at elementum lacus congue</p>-->
+<!--                            <i class="far fa-heart"></i>-->
+<!--                            <form action="#" th:action="@{/pizzadetail2}" th:object="${pizza}" method="POST">-->
+
+<!--                                <button class="btn card_btn" name="pizzaName" th:value="Cheese">Detail</button>-->
+<!--                            </form>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </section>-->
+<!--    <div class="container"><hr class="style-line"></div>-->
+<!--    <section class="Favorites">-->
+<!--        <div class="main">-->
+<!--            <h1 class="favorites-title">Favorites</h1>-->
+<!--            <ul class="cards">-->
+<!--                <li class="cards_item">-->
+<!--                    <div class="card card-landing">-->
+<!--                        <div class="card_image"><img class="img-response" src="https://picsum.photos/500/300/?image=10"></div>-->
+<!--                        <div class="card_content">-->
+<!--                            <h2 class="card_title">Card Grid Layout</h2>-->
+<!--                            <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>-->
+<!--                            <button class="btn card_btn">Read More</button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </li>-->
+<!--                <li class="cards_item">-->
+<!--                    <div class="card card-landing">-->
+<!--                        <div class="card_image"><img class="img-response" src="https://picsum.photos/500/300/?image=5"></div>-->
+<!--                        <div class="card_content">-->
+<!--                            <h2 class="card_title">Card Grid Layout</h2>-->
+<!--                            <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>-->
+<!--                            <button class="btn card_btn">Read More</button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </li>-->
+<!--                <li class="cards_item">-->
+<!--                    <div class="card card-landing">-->
+<!--                        <div class="card_image"><img class="img-response" src="https://picsum.photos/500/300/?image=11"></div>-->
+<!--                        <div class="card_content">-->
+<!--                            <h2 class="card_title">Card Grid Layout</h2>-->
+<!--                            <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>-->
+<!--                            <button class="btn card_btn">Read More</button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </section>-->
+<!--</main>-->
+<!--<div th:replace="base ::footer"></div>-->
+<!--<div th:replace="base :: javascript-links"></div>-->
+
+<div class="container">
+    <hr>
+</div>
+<main>
+    <section class="Recommendations">
+        <div class="main">
+            <h1 class="display-3">Recommendations</h1>
+            <ul class="cards">
+                <li class="cards_item">
+                    <div class="card card-landing wow fadeInLeft">
+                        <div class="card_image"><img class="img-response"
+                                                     src="https://thumbs.dreamstime.com/b/food-ingredients-spices-cooking-delicious-italian-pizza-mushrooms-tomatoes-cheese-onion-oil-pepper-salt-basil-grater-olive-114683943.jpg">
+                        </div>
+                        <div class="card_content">
+                            <h2 class="card_title">Build Your Own</h2>
+                            <p class="card_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean iaculis
+                                mauris sit amet augue feugiat ornare. Morbi erat diam, condimentum ac nisi a, blandit
+                                cursus nunc. Quisque suscipit dui nec diam consequat, at elementum lacus congue</p>
+                            <i class="far fa-heart"></i>
+                            <form action="#" th:action="@{/orderform2}" th:object="${pizza}" method="POST">
+                                <button class="btn card_btn" >Customize</button>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+                <li class="cards_item">
+                    <div class="card card-landing wow bounceInUp">
+                        <div class="card_image"><img class="img-response"
+                                                     src="http://images.bigoven.com/image/upload/v1457113782/awesome-pepperoni-pizza-7f8696.jpg">
+                        </div>
+                        <div class="card_content">
+                            <h2 class="card_title">Pepperoni Pizza </h2>
+                            <p class="card_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean iaculis
+                                mauris sit amet augue feugiat ornare. Morbi erat diam, condimentum ac nisi a, blandit
+                                cursus nunc. Quisque suscipit dui nec diam consequat, at elementum lacus congue</p>
+                            <i class="far fa-heart"></i>
+                            <form action="#" th:action="@{/pizzadetail2}" th:object="${pizza}" method="POST">
+
+                                <button class="btn card_btn" name="pizzaName" th:value="Peporoni">Detail</button>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+                <li class="cards_item wow fadeInRight">
+                    <div class="card card-landing">
+                        <div class="card_image"><img class="img-response"
+                                                     src="https://x56q142t2ix2x00293jc48ze-wpengine.netdna-ssl.com/placentia/wp-content/uploads/sites/4/2018/08/Papa-Johns-Cheese-Pizza-589x414-2.jpg">
+                        </div>
+                        <div class="card_content">
+                            <h2 class="card_title">Cheese Pizza </h2>
+                            <p class="card_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean iaculis
+                                mauris sit amet augue feugiat ornare. Morbi erat diam, condimentum ac nisi a, blandit
+                                cursus nunc. Quisque suscipit dui nec diam consequat, at elementum lacus congue</p>
+                            <i class="far fa-heart"></i>
+                            <form action="#" th:action="@{/pizzadetail2}" th:object="${pizza}" method="POST">
+
+                                <button class="btn card_btn" name="pizzaName" th:value="Cheese">Detail</button>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <div class="container">
+        <hr class="style-line">
+    </div>
+    <section class="Favorites">
+        <div class="main">
+            <h1 class="display-3">Favorites</h1>
+            <ul class="cards">
+                <li class="cards_item">
+                    <div class="card card-landing wow bounceInUp">
+                        <div class="card_image"><img class="img-response"
+                                                     src="https://s2.best-wallpaper.net/wallpaper/1920x1080/1803/Pizza-mushrooms-tomatoes-food_1920x1080.jpg">
+                        </div>
+                        <div class="card_content">
+                            <h2 class="card_title">Veggie Pizza </h2>
+                            <p class="card_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean iaculis
+                                mauris sit amet augue feugiat ornare. Morbi erat diam, condimentum ac nisi a, blandit
+                                cursus nunc. Quisque suscipit dui nec diam consequat, at elementum lacus congue</p>
+                            <i class="far fa-heart"></i>
+                            <form action="#" >
+                                <input type="hidden" name="id">
+                                <button class="btn card_btn" name="pizzaName" th:value="Peporoni">Detail</button>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+                <li class="cards_item wow fadeInLeft">
+                    <div class="card card-landing">
+                        <div class="card_image"><img class="img-response"
+                                                     src="https://assets.wallpapersin4k.org/uploads/2017/04/Cheese-Pizza-Wallpaper-16.jpg">
+                        </div>
+                        <div class="card_content">
+                            <h2 class="card_title">Hawaiian Pineapple</h2>
+                            <p class="card_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean iaculis
+                                mauris sit amet augue feugiat ornare. Morbi erat diam, condimentum ac nisi a, blandit
+                                cursus nunc. Quisque suscipit dui nec diam consequat, at elementum lacus congue</p>
+                            <i class="far fa-heart"></i>
+                            <button class="btn card_btn">Details</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="cards_item">
+                    <div class="card card-landing wow bounceInUp">
+                        <div class="card_image"><img class="img-response"
+                                                     src="https://wallpapertag.com/wallpaper/full/f/3/1/398152-pizza-wallpaper-2560x1440-ipad-pro.jpg">
+                        </div>
+                        <div class="card_content">
+                            <h2 class="card_title">Marinara Pizza</h2>
+                            <p class="card_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean iaculis
+                                mauris sit amet augue feugiat ornare. Morbi erat diam, condimentum ac nisi a, blandit
+                                cursus nunc. Quisque suscipit dui nec diam consequat, at elementum lacus congue</p>
+                            <i class="far fa-heart"></i>
+                            <button class="btn card_btn">Details</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+</main>
+<div th:replace="base ::footer"></div>
+<div th:replace="base :: javascript-links"></div>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart Detail</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <!---Google Fonts--->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="animate.min.css">
+</head>
+<body>
+<div th:replace="base ::navbar"></div>
+
+
+<div class="container" >
+
+    <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+
+
+                <h3>Order list</h3>
+                <div  class="card" >
+                    <div class="card-body">
+                        Order Id :  <span th:text="${inp.orderId}"></span><br/>
+                        Date :  <span th:text="${inp.orderDate}"></span><br/>
+                        <br/><br/>
+                        <div th:each="pizza: ${inp.pizzaSet}"  class="card" >
+                            <div class="row">
+                                <div class="col-md-6 " style="padding-left: 120px;padding-top: 40px">
+                            <img class="card-img-64" th:src="${pizza.getPic()}">
+                                </div>
+                                <div class="col-md-6">
+
+                                Name :  <span th:text="${pizza.getMeat()}"></span><br/>
+                                Crust:  <span th:text="${pizza.getCrust()}"></span><br/>
+                                Cut :  <span th:text="${pizza.getCut()}"></span><br/>
+                                Veggie :  <span th:text="${pizza.getVeggie()}"></span><br/>
+                                cheese :  <span th:text="${pizza.getCheese()}"></span><br/>
+                                price:  <span th:text="${pizza.getPrice()}"></span><br/>
+
+                            </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+        </div>
+        <!-- Pagination -->
+
+
+
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4 mb-4" >
+            <br/><br/><br/><br/><br/>
+            <!-- Search Widget -->
+
+            <!-- Categories Widget -->
+
+
+            <!-- Side Widget -->
+
+
+
+                        <a href="/checkout"><button type="submit" class="btn btn-primary">Check-out</button></a><br/>
+                        <!-- Heading -->
+                        <h4 class="d-flex justify-content-between align-items-center mb-3" th:inline="text">
+                            <span class="text-muted">Your cart</span>
+                            <span  class="badge badge-secondary badge-pill" >[[${inp.pizzaSet.size()}]]</span>
+                        </h4>
+
+                        <!-- Cart -->
+                        <ul class="list-group mb-3 z-depth-1">
+                            <li th:each="pizza:${inp.pizzaSet}" class="list-group-item d-flex justify-content-between lh-condensed">
+                                <div >
+                                    <h6 class="my-0" th:inline="text">[[${pizza.meat}]] Pizza</h6>
+                                    <small th:text="${pizza.meat}" class="text-muted"></small>
+                                    <small th:text="${pizza.size}" class="text-muted"></small>
+                                    <small th:text="${pizza.crust}" class="text-muted"></small>
+                                    <small th:text="${pizza.veggie}" class="text-muted"></small>
+                                </div>
+                                <span th:text="${pizza.price}" class="text-muted"></span>
+                            </li>
+
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <div>
+                                    <h6 class="my-0">Tax</h6>
+                                    <small class="text-muted">6%</small>
+                                </div>
+                                <span th:text="${inp.tax}" class="text-muted"></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between bg-light">
+                                <div class="text-success">
+                                    <h6 class="my-0">Promo code</h6>
+                                    <small>EXAMPLECODE</small>
+                                </div>
+                                <span   class="text-success">-$5</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Total (USD)</span>
+                                <strong th:text="${inp.totalPrice}" ></strong>
+                            </li>
+                        </ul>
+                        <!-- Cart -->
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.row -->
+    <br/><br/>
+    <div class="row" style="padding-left: 200px" >
+        <ul class="pagination justify-content-center mb-1">
+            <li class="page-item">
+                <a class="page-link" href="#">&larr; Older</a>
+            </li>
+            <li class="page-item disabled">
+                <a class="page-link" href="#">Newer &rarr;</a>
+            </li>
+        </ul>
+
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
+

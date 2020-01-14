@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark red darken-2" th:fragment="navbar">
+    <a class="navbar-brand" href="#">
+        <img src="/logo.png" height="50px" width="50px" alt="pizza logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+            aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/register">Sign Up</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Menu</a>
+            </li>
+            <li class="nav-item" >
+                <a class="nav-link waves-effect waves-light" href="/cart" >
+                    <i class="fas fa-shopping-cart"> </i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Heading -->
+<h2 class="my-5 h2 text-center">Checkout form</h2>
+
+<!--Grid row-->
+<div class="row">
+
+    <!--Grid column-->
+    <div class="col-md-8 mb-4">
+
+        <!--Card-->
+        <div class="card" >
+            <h4 style="padding-left: 100px"><a href="/login2">I have an account</a> </h4>
+            <!--Card content-->
+            <form class="card-body" autocomplete="off" action="#" th:action="@{checkoutprocess}" th:object="${user}" method="post">
+
+                <!--Grid row-->
+                <div class="row">
+
+                    <!--Grid column-->
+                    <div class="col-md-6 mb-2">
+
+                        <!--firstName-->
+                        <div class="md-form ">
+                            <input type="text" name="firstName" id="firstName" class="form-control" th:field="*{firstName}">
+                            <label for="firstName" class="">First name</label>
+                        </div>
+
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-md-6 mb-2">
+
+                        <!--lastName-->
+                        <div class="md-form">
+                            <input type="text" id="lastName" class="form-control" name="lastName" th:field="*{lastName}">
+                            <label for="lastName" class="">Last name</label>
+                        </div>
+
+                    </div>
+                    <!--Grid column-->
+
+                </div>
+                <!--Grid row-->
+
+                <!--Username-->
+                <div class="md-form input-group pl-0 mb-5">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">@</span>
+                    </div>
+                    <input type="text" class="form-control py-0" placeholder="Username" aria-describedby="basic-addon1" name="username"
+                           th:field="*{username}" >
+                </div>
+
+                <!--email-->
+                <div class="md-form mb-5">
+                    <input type="text" id="email" class="form-control"  name="email" th:field="*{email}">
+                    <label for="email" class="">Email </label>
+                </div>
+
+                <!--address-->
+                <div class="md-form mb-5">
+                    <input  type="password" id="password" name="password"
+                            th:field="*{password}">
+                    <label for="password" class="">Password</label>
+                </div>
+
+
+
+                <!--Grid row-->
+                <div class="row">
+
+
+
+
+                    <!--Grid column-->
+                    <div class="col-lg-4 col-md-6 mb-4">
+
+                        <label for="zip">Zip</label>
+                        <input type="text" class="form-control" id="zip" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Zip code required.
+                        </div>
+
+                    </div>
+                    <!--Grid column-->
+
+                </div>
+                <!--Grid row-->
+
+                <hr>
+
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="save-info">
+                    <label class="custom-control-label" for="save-info">Save this information for next time</label>
+                </div>
+
+                <hr>
+
+                <div class="d-block my-3">
+                    <div class="custom-control custom-radio">
+                        <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" >
+                        <label class="custom-control-label" for="credit">Credit card</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" >
+                        <label class="custom-control-label" for="debit">Debit card</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" >
+                        <label class="custom-control-label" for="paypal">Paypal</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="cc-name">Name on card</label>
+                        <input type="text" class="form-control" id="cc-name" placeholder="" >
+                        <small class="text-muted">Full name as displayed on card</small>
+                        <div class="invalid-feedback">
+                            Name on card is required
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="cc-number">Credit card number</label>
+                        <input type="text" class="form-control" id="cc-number" placeholder="" >
+                        <div class="invalid-feedback">
+                            Credit card number is required
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label for="cc-expiration">Expiration</label>
+                        <input type="text" class="form-control" id="cc-expiration" placeholder="">
+                        <div class="invalid-feedback">
+                            Expiration date required
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="cc-expiration">CVV</label>
+                        <input type="text" class="form-control" id="cc-cvv" placeholder="" >
+                        <div class="invalid-feedback">
+                            Security code required
+                        </div>
+                    </div>
+                </div>
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+
+            </form>
+
+        </div>
+        <!--/.Card-->
+
+    </div>
+    <!--Grid column-->
+
+    <!--Grid column-->
+    <div class="col-md-4 mb-4">
+
+        <!-- Heading -->
+        <h4 class="d-flex justify-content-between align-items-center mb-3" th:inline="text">
+            <span class="text-muted">Your cart</span>
+            <span  class="badge badge-secondary badge-pill" >[[${inp.pizzaSet.size()}]]</span>
+        </h4>
+
+        <!-- Cart -->
+        <ul class="list-group mb-3 z-depth-1">
+            <li th:each="pizza:${inp.pizzaSet}" class="list-group-item d-flex justify-content-between lh-condensed">
+                <div >
+                    <h6 class="my-0" th:inline="text">[[${pizza.meat}]] Pizza</h6>
+                    <small th:text="${pizza.meat}" class="text-muted"></small>
+                    <small th:text="${pizza.size}" class="text-muted"></small>
+                    <small th:text="${pizza.crust}" class="text-muted"></small>
+                    <small th:text="${pizza.veggie}" class="text-muted"></small>
+                </div>
+                <span th:text="${pizza.price}" class="text-muted"></span>
+            </li>
+
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                    <h6 class="my-0">Tax</h6>
+                    <small class="text-muted">6%</small>
+                </div>
+                <span th:text="${inp.tax}" class="text-muted"></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between bg-light">
+                <div class="text-success">
+                    <h6 class="my-0">Promo code</h6>
+                    <small>EXAMPLECODE</small>
+                </div>
+                <span   class="text-success">-$5</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+                <span>Total (USD)</span>
+                <strong th:text="${inp.totalPrice}" ></strong>
+            </li>
+        </ul>
+        <!-- Cart -->
+
+
+    </div>
+    <!--Grid column-->
+
+</div>
+<!--Grid row-->
+
+</div>
+</main>
+<!--Main layout-->
+//Total
+
+<div th:replace="base :: javascript-links"></div>
+</body>
+</html>

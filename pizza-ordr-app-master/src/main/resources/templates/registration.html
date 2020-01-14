@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/styles.css}">
+
+</head>
+<body  background="http://mypipizza.com/wp-content/uploads/2014/03/mypi-pizza-website-slider1.jpg" style="  background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;">
+
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark red darken-2" th:fragment="navbar">
+    <a class="navbar-brand" href="#">
+        <img src="/logo.png" height="50px" width="50px" alt="pizza logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+            aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/register">Sign Up</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Menu</a>
+            </li>
+            <li class="nav-item" >
+                <a class="nav-link waves-effect waves-light" href="/cart" >
+                    <i class="fas fa-shopping-cart"> </i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Material form register -->
+<div class="container">
+    <hr>
+</div>
+<div>
+    <div>
+        <main class="card" style="width: 50%; height: 50%; top:0; bottom: 10%; left: 0; right: 0;    margin: auto;">
+            <div th:if="${message}!=null" class="alert alert-warning" role="alert">
+                <span th:text="${message}"></span>
+            </div>
+            <h5 class="card-header info-color white-text text-center py-4">
+                <strong>Sign up</strong>
+            </h5>
+            <div class="card-body px-lg-5 pt-0" id="bg">
+                <form class="text-center" style="color: #757575;"
+                      action="#" autocomplete="off"
+                      th:action="@{register}" th:object="${user}" method="post">
+                    <div class="form-row">
+                        <div class="col">
+                            <!-- First name -->
+                            <div class="md-form">
+                                <input type="text" id="firstName" name="firstName" th:field="*{firstName}"
+                                       class="form-control">
+                                <label for="firstName">First name
+                                    <mark><strong><span th:if="${#fields.hasErrors('firstName')}"
+                                                        th:errors="*{firstName}">First Name Error</span>
+                                    </strong></mark>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <!-- Last name -->
+                            <div class="md-form">
+                                <input type="text" name="lastName" id="lastName" th:field="*{lastName}"
+                                       class="form-control">
+                                <label for="lastName">Last name
+                                    <mark><strong><span th:if="${#fields.hasErrors('lastName')}"
+                                                        th:errors="*{lastName}">Last Name Error</span></strong></mark>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- E-mail -->
+                    <div class="md-form mt-0">
+                        <input type="email" id="email" class="form-control" name="email" th:field="*{email}">
+                        <label for="email">E-mail
+                            <mark><strong><span th:if="${#fields.hasErrors('email')}"
+                                                th:errors="*{email}">Email Error</span></strong></mark>
+                        </label>
+                    </div>
+
+                    <!-- username -->
+                    <div class="md-form">
+                        <input type="text" name="username" id="username" th:field="*{username}" class="form-control">
+                        <label for="username">User name
+                            <mark><strong><span th:if="${#fields.hasErrors('username')}"
+                                                th:errors="*{username}">User Name Error</span></strong></mark>
+                        </label>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="md-form">
+                        <input type="password" id="password" class="form-control" name="password" th:field="*{password}"
+                               aria-describedby="passwordHelpBlock">
+                        <label for="password">Password
+                            <mark><strong><span th:if="${#fields.hasErrors('password')}"
+                                                th:errors="*{password}">Password Error</span></strong></mark>
+                        </label>
+                        <small id="passwordHelpBlock" class="form-text text-muted mb-4">
+                            At least 8 characters and 1 digit
+                        </small>
+                    </div>
+
+                    <!-- Sign up button -->
+                    <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0"
+                            type="submit">
+                        Sign in
+                    </button>
+
+                </form>
+                <!-- Form -->
+
+            </div>
+
+        </main>
+    </div>
+</div>
+
+<!-- Material form register -->
+<div>
+    <div th:replace="base ::footer"></div>
+    <div th:replace="base :: javascript-links"></div>
+</div>
+</body>
+</html>

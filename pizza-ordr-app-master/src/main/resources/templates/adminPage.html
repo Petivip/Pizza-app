@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart Detail</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <!---Google Fonts--->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="animate.min.css">
+</head>
+<body background="https://i.pinimg.com/originals/be/c4/de/bec4de77e9c454368367727167fcb65f.jpg" style="  background-position: center; background-repeat: no-repeat;
+    background-size: cover;">
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark red darken-2" th:fragment="navbar">
+    <a class="navbar-brand" href="#">
+        <img src="/logo.png" height="50px" width="50px" alt="pizza logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+            aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/register">Sign Up</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Menu</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link waves-effect waves-light" href="/cart">
+                    <i class="fas fa-shopping-cart"> </i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<div class="card" style="width: 50%; height: 50%; top:0; bottom: 10%; left: 0; right: 0;    margin: auto;">
+    <div class="row">
+        <!-- Blog Entries Column -->
+        <div class="col-md-12" style="background-color: #4A4A4A; background-size: cover;">
+            <h3 style="font-style: italic; color: orangered; font-weight: bold">Today's Order</h3>
+            <div th:each="input: ${inputs}" class="card"
+                 style="color: blue; background-color: cornsilk; background-size: cover;">
+                <div class="card-body" style="align-content: center; font-weight: bolder">
+                    Order Id : <span th:text="${input.orderId}"></span><br/>
+                    Date : <span th:text="${input.orderDate}"></span><br/>
+                    Total price: <span th:text="${input.orderPrice}"></span><br/><br/>
+                    <div th:each="pizza: ${input.pizzaSet}" class="card">
+                        <div>
+                            Name : <span th:text="${pizza.meat}"></span><br/>
+                            Crust: <span th:text="${pizza.crust}"></span><br/>
+                            Cut : <span th:text="${pizza.cut}"></span><br/>
+                            Veggie : <span th:text="${pizza.veggie}"></span><br/>
+                            cheese : <span th:text="${pizza.cheese}"></span><br/>
+                            price: <span th:text="${pizza.price}"></span><br/>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a style="margin: 50px" th:href="@{/update/{id}(id=${pizza.pizzaId})}">Update</a>
+                            </div>
+                            <div class="col-md-6">
+                                <a style="margin: 50px" th:href="@{/delete/{id}(id=${pizza.pizzaId})}">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/><br/>
+            <div class="card my-4"
+                 background="https://i.pinimg.com/originals/19/68/cc/1968cce7a05dc68e29ea063d853d3a4c.jpg" style=" background-position: center; background-repeat: no-repeat;
+                 background-size: cover;">
+                <h5 class="card-header">Search Customer</h5>
+                <div class="card-body" style="background-color: cornsilk;">
+                    <form class="form-inline" th:action="@{/searchcustomer}" method="post">
+                        <input type="text" name="search" class="form-control" placeholder="Search for...">
+                        <span>
+                <button class="btn btn-secondary" type="submit" name="submit">Go!</button>
+              </span>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Pagination -->
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4 ">
+
+        </div>
+    </div>
+    <!-- /.row -->
+    <!--    <br/><br/>-->
+    <!--    <div class="row" style="padding-left: 200px">-->
+    <!--        <ul class="pagination justify-content-center mb-1">-->
+    <!--            <li class="page-item">-->
+    <!--                <a class="page-link" href="#">&larr; Older</a>-->
+    <!--            </li>-->
+    <!--            <li class="page-item disabled">-->
+    <!--                <a class="page-link" href="#">Newer &rarr;</a>-->
+    <!--            </li>-->
+    <!--        </ul>-->
+    <!--    </div>-->
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>

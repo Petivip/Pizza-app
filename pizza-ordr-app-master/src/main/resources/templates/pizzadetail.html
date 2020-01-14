@@ -1,0 +1,44 @@
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pizza Detail</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet">
+</head>
+<body background="https://www.innercrust.com/assets/img/slide3z.jpg"
+      style="background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;">
+<nav th:replace="base :: navbar"></nav>
+<div th:action="@{/secondprocess}" class="container ">
+
+    <main class="card" style="width: 50%; height: 50%; top:0; bottom: 10%; left: 0; right: 0; margin: auto;">
+        <img class="card-img-top"
+             th:src="${pi.pic}"
+             alt="Card image pepperoni pizza">
+        <div class="card-body">
+            <h5 th:inline="text" class="card-title">[[${pi.meat}]] Pizza</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li th:inline="text" class="list-group-item">Italian Garlic Marinated [[${pi.meat}]]</li>
+            <li class="list-group-item">Thin Crust Whole Wheat Pizza Flour</li>
+            <li class="list-group-item">Buffalo Mozzarella</li>
+        </ul>
+        <div class="card-body">
+            <form th:action="@{/secondprocess}" th:object="${pizza}" method="post">
+                <button name="pizzaid" th:value="${pi.pizzaId}" class="card-link">Add Cart</button>
+            </form>
+        </div>
+    </main>
+</div>
+<div th:replace="base ::footer"></div>
+<div th:replace="base :: javascript-links"></div>
+</body>
+</html>
